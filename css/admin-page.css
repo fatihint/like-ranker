@@ -1,0 +1,9 @@
+th, td{
+    text-align: center;
+    color: #fff;
+}
+
+.widefat .check-column{
+    width: 0.8em !important;
+    padding: 11px 0 0 10px !important;
+}

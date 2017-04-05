@@ -9,7 +9,7 @@ function lr_add_post_meta_box() {
 
     add_meta_box($id, $title, $callback, $screen, 'normal', 'core');
 }
-add_action('add_meta_boxes', 'lr_add_post_meta_box');
+add_action('admin_init', 'lr_add_post_meta_box');
 
 function lr_meta_box_render($post) {
     add_post_meta($post->ID, '_Like', '0', true);

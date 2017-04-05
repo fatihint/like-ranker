@@ -21,12 +21,15 @@ function like_ranker_page_render() {
     $args = array(
         'meta_key' => '_Like',
         'orderby' => 'meta_value',
+        'meta_value' => 0,
+        'meta_compare' => '<'
     );
     $query = new WP_Query($args);
 
     $global_tag_list = array();
 
     if($query->have_posts()) {
+        $no_like = false;
         $posts = $query->posts;
         foreach($posts as $post) {
             $tags = wp_get_post_tags($post->ID, array('fields' => 'slugs'));
@@ -34,13 +37,15 @@ function like_ranker_page_render() {
                 foreach($tags as $tag) {
                     if(array_key_exists($tag, $global_tag_list)) {
                         $global_tag_list[$tag] += $post->_Like;
-                    }
-                    else{
+                    } else{
                         $global_tag_list[$tag] = $post->_Like;
                     }
                 }
             }
         }
+    }
+    else{
+        $no_like = true;
     }
 
     arsort($global_tag_list);
@@ -56,6 +61,14 @@ function like_ranker_page_render() {
     ?>
     <div class="wrap">
 		<h2>Like Ranker</h2>
+        <?php
+            if($no_like) {
+                ?>
+                <h3>None of your posts has been liked yet...</h3>
+                <?php
+                die;
+            }
+        ?>
         <table class="wp-list-table widefat fixed striped posts">
             <thead>
 	            <tr> <td id="cb" class="manage-column column-cb check-column"> Rank </td>

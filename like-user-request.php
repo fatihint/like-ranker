@@ -8,15 +8,13 @@ function lr_save_like_request() {
     $postId = $_POST['id'];
     $ip;
 
-    if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+    if (!empty( $_SERVER['HTTP_CLIENT_IP'])) {
         //check ip from share internet
         $ip = $_SERVER['HTTP_CLIENT_IP'];
-    }
-    elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+    } elseif (!empty( $_SERVER['HTTP_X_FORWARDED_FOR'])) {
         //to check ip is pass from proxy
         $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    }
-    else {
+    } else {
         $ip = $_SERVER['REMOTE_ADDR'];
     }
 
@@ -28,13 +26,11 @@ function lr_save_like_request() {
         if($flag == 1){
             $voters_ip_buffer = $voters_ip;
             $voters_ip_buffer[] = $ip;
-        }
-        else{
+        } else{
             $voters_ip_buffer = $voters_ip[0];
             $voters_ip_buffer[] = $ip;
         }
-    }
-    else{
+    } else{
         $voters_ip_buffer = $voters_ip[0];
         for ($i=0; $i < count($voters_ip_buffer); $i++) {
             if($ip == $voters_ip_buffer[$i]){

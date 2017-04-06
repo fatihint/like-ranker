@@ -22,20 +22,26 @@ function like_ranker_page_render() {
         'meta_key' => '_Like',
         'orderby' => 'meta_value',
         'meta_value' => 0,
-        'meta_compare' => '<'
+        'meta_compare' => '>'
     );
-    $query = new WP_Query($args);
+
+    $query = new WP_Query( $args );
+
+    echo '<pre>';
+    var_dump($query);
+    echo '</pre>';
+    die;
 
     $global_tag_list = array();
 
-    if($query->have_posts()) {
+    if( $query->have_posts() ) {
         $no_like = false;
         $posts = $query->posts;
-        foreach($posts as $post) {
-            $tags = wp_get_post_tags($post->ID, array('fields' => 'slugs'));
-            if(count($tags)) {
-                foreach($tags as $tag) {
-                    if(array_key_exists($tag, $global_tag_list)) {
+        foreach( $posts as $post ) {
+            $tags = wp_get_post_tags( $post->ID, array('fields' => 'slugs') );
+            if( count($tags) ) {
+                foreach( $tags as $tag ) {
+                    if(array_key_exists( $tag, $global_tag_list )) {
                         $global_tag_list[$tag] += $post->_Like;
                     } else{
                         $global_tag_list[$tag] = $post->_Like;
@@ -51,7 +57,7 @@ function like_ranker_page_render() {
     arsort($global_tag_list);
     $global_tag_sort = array();
 
-    foreach ($global_tag_list as $key => $value) {
+    foreach ( $global_tag_list as $key => $value ) {
         $global_tag_sort[] = array($key => $value);
     }
 
@@ -88,9 +94,9 @@ function like_ranker_page_render() {
                         ?>
                         <tr>
                             <?php foreach ($global_tag_sort[$i] as $key => $value): ?>
-                                <td> <strong><?=$i+1?></strong> </td>
-                                <td> <strong><?=$key?></strong> </td>
-                                <td> <strong><?=$value?></strong> </td>
+                                <td> <strong><?php echo $i+1;?></strong> </td>
+                                <td> <strong><?php echo $key;?></strong> </td>
+                                <td> <strong><?php echo $value;?></strong> </td>
                             <?php endforeach; ?>
                         </tr>
                         <?php
@@ -101,22 +107,22 @@ function like_ranker_page_render() {
         <div class="tablenav bottom">
         	<div class="alignleft actions"> </div>
             <div class="tablenav-pages">
-                <span class="displaying-num"><?=count($global_tag_list).' items'?></span>
+                <span class="displaying-num"><?php echo count($global_tag_list).' items'; ?></span>
                 <span class="pagination-links">
                     <?php
                         if($current_page != 1) {
                             ?>
                             <a class="first-page" href="http://localhost/wp/wp-admin/admin.php?page=like_ranker&paged=1"><span class="screen-reader-text">First page</span><span aria-hidden="true">«</span></a>
-                            <a class="prev-page"  href="http://localhost/wp/wp-admin/admin.php?page=like_ranker&paged=<?=$current_page-1?>"><span class="screen-reader-text">Previous page</span><span aria-hidden="true">‹</span></a>
+                            <a class="prev-page"  href="http://localhost/wp/wp-admin/admin.php?page=like_ranker&paged=<?php echo $current_page-1; ?>"><span class="screen-reader-text">Previous page</span><span aria-hidden="true">‹</span></a>
                             <?php
                         }
                     ?>
-                    <span class="screen-reader-text">Current Page</span><span id="table-paging" class="paging-input"><span class="tablenav-paging-text"><?=$current_page?> of <span class="total-pages"><?=$page_count?></span></span></span>
+                    <span class="screen-reader-text">Current Page</span><span id="table-paging" class="paging-input"><span class="tablenav-paging-text"><?php echo $current_page; ?> of <span class="total-pages"><?php echo $page_count; ?></span></span></span>
                     <?php
                         if($current_page != $page_count) {
                             ?>
-                            <a class="next-page" href="http://localhost/wp/wp-admin/admin.php?page=like_ranker&paged=<?=$current_page+1?>"><span class="screen-reader-text">Next page</span><span aria-hidden="true">›</span></a>
-                            <a class="last-page" href="http://localhost/wp/wp-admin/admin.php?page=like_ranker&paged=<?=$page_count?>"><span class="screen-reader-text">Last page</span><span aria-hidden="true">»</span></a>
+                            <a class="next-page" href="http://localhost/wp/wp-admin/admin.php?page=like_ranker&paged=<?php echo $current_page+1; ?>"><span class="screen-reader-text">Next page</span><span aria-hidden="true">›</span></a>
+                            <a class="last-page" href="http://localhost/wp/wp-admin/admin.php?page=like_ranker&paged=<?php echo $page_count; ?>"><span class="screen-reader-text">Last page</span><span aria-hidden="true">»</span></a>
                             <?php
                         }
                     ?>

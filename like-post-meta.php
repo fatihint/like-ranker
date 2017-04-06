@@ -21,7 +21,7 @@ function lr_meta_box_render($post) {
         <div>
             <div class="meta-row">
                 <div class="meta-th">
-                    <h1><?=$post_meta['_Like'][0]?> people Liked it</h1>
+                    <h1><?php echo $post_meta['_Like'][0]; ?> people Liked it</h1>
                 </div>
             </div>
         </div>

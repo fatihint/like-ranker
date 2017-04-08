@@ -2,7 +2,7 @@
 /*
 * Plugin Name: Like Ranker
 * Author: Fatih Intekin
-* Description: Creates a rating system for your wordpress site. Allows visitors and users to "like" your posts, and provides a widget where you can list your top 10 liked posts. Also creates a list in an admin panel, where you can see the like counts of each tag.
+* Description: Creates a rating system for your posts. Allows visitors and users to "like" your posts, and provides a widget where you can list your top 10 liked posts. Also creates a list in an admin panel, where you can see the like counts of each tag.
 * Version:     1.0.0
 * Author URI:  https://github.com/fatihint
 * License:     GPLv3

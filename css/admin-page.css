@@ -1,9 +1,9 @@
-th, td{
-    text-align: center;
-    color: #fff;
+#lr-title{
+    font-weight: 700;
+    margin: 20px 0;
 }
 
 .widefat .check-column{
     width: 0.8em !important;
-    padding: 11px 0 0 10px !important;
+    padding: 2px 0 0 10px !important;
 }

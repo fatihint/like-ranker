@@ -1,0 +1,32 @@
+.like-box{
+    border-bottom: 1px solid #cbcbcb;
+    border-top: 1px solid #cbcbcb;
+    padding: 30px 0;
+}
+.like-box ul{
+    margin-left: 0;
+}
+.like-box ul li{
+    display: inline;
+    margin: 0 !important;
+}
+.lrd-item {
+    display: inline;
+    margin: 0;
+}
+.like-box .admin-link {
+    text-decoration: none;
+    box-shadow: none;
+    color: black;
+    float: right;
+}
+.like-box .admin-link:hover{
+    text-decoration: underline;
+    box-shadow: none;
+}
+.like-count {
+    font-weight: 500;
+}
+.like-count span{
+    font-weight: 700;
+}

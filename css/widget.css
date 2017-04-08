@@ -1,0 +1,9 @@
+.lr-post .widget-posts{
+    text-decoration: none;
+    box-shadow: none;
+}
+
+.lr-post .widget-posts: hover{
+    text-decoration: underline;
+    box-shadow: none;
+}
